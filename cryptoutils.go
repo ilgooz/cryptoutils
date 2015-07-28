@@ -8,8 +8,10 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+var Key = "big awesome secret stands here"
+
 func ComputeHmac256(message string) string {
-	key := []byte("big awesome secret stands here")
+	key := []byte(Key)
 	h := hmac.New(sha256.New, key)
 	h.Write([]byte(message))
 	return fmt.Sprintf("%x", h.Sum(nil))
