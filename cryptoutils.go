@@ -2,6 +2,7 @@ package cryptoutils
 
 import (
 	"crypto/hmac"
+	"crypto/rand"
 	"crypto/sha256"
 	"fmt"
 
@@ -23,4 +24,10 @@ func Hash(s string, level int) (string, error) {
 		return "", nil
 	}
 	return string(hashed), nil
+}
+
+func RandToken(size int) string {
+	b := make([]byte, size)
+	rand.Read(b)
+	return fmt.Sprintf("%x", b)
 }
